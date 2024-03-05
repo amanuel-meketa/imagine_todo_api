@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34322.80
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Imagine_todo_api", "Imagine_todo_api\Imagine_todo_api.csproj", "{2857E9C5-D37F-42BF-8879-5515A4898F2E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2857E9C5-D37F-42BF-8879-5515A4898F2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2857E9C5-D37F-42BF-8879-5515A4898F2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2857E9C5-D37F-42BF-8879-5515A4898F2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2857E9C5-D37F-42BF-8879-5515A4898F2E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8E0E17AC-587E-4447-9107-0E10D1A10E79}
+	EndGlobalSection
+EndGlobal
