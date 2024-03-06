@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Imagine_todo.domain", "Imag
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Imagine_todo.infrastructure", "Imagine_todo.infrastructure\Imagine_todo.infrastructure.csproj", "{AE039F26-D93C-4257-8BED-FCB275494AA8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Imagine_todo.Persistence", "Imagine_todo.Persistence\Imagine_todo.Persistence.csproj", "{D23B2981-BD08-4FDD-A67C-EA66E27C5D62}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{AE039F26-D93C-4257-8BED-FCB275494AA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE039F26-D93C-4257-8BED-FCB275494AA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AE039F26-D93C-4257-8BED-FCB275494AA8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D23B2981-BD08-4FDD-A67C-EA66E27C5D62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D23B2981-BD08-4FDD-A67C-EA66E27C5D62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D23B2981-BD08-4FDD-A67C-EA66E27C5D62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D23B2981-BD08-4FDD-A67C-EA66E27C5D62}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
