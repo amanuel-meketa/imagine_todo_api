@@ -1,13 +1,8 @@
-using Imagine_todo.Persistence;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
+using Imagine_todo.Persistence;
+using Microsoft.OpenApi.Models;
+using Microsoft.Data.SqlClient;
 using Npgsql;
-using System;
 
 namespace YourNamespace
 {
@@ -35,12 +30,13 @@ namespace YourNamespace
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddEndpointsApiExplorer();
-            services.AddSwaggerGen();
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
+            });
 
             const string DBMS_SQL_SERVER = "SQLServer";
             const string DBMS_POSTGRES = "Postgres";
@@ -61,41 +57,37 @@ namespace YourNamespace
                     builder.UserID = user;
 
                 services.AddDbContext<ApplicationDbContext>(
-                    options => options.UseSqlServer(
-                        builder.ConnectionString,
-                        x => x.MigrationsHistoryTable(ApplicationDbContext.SchemaTableName)
-                    )
+                    options => options.UseSqlServer(builder.ConnectionString)
                 );
             }
+            else if (DBMS_POSTGRES.Equals(databaseType, StringComparison.OrdinalIgnoreCase))
+            {
+                var builder = new NpgsqlConnectionStringBuilder(connectionString);
 
-           else if (DBMS_POSTGRES.Equals(databaseType, StringComparison.OrdinalIgnoreCase))
-                {
-                    var builder = new NpgsqlConnectionStringBuilder(connectionString);
+                if (!string.IsNullOrWhiteSpace(user))
+                    builder.Username = user;
 
-                    if (!string.IsNullOrWhiteSpace(user))
-                        builder.Username = user;
+                if (!string.IsNullOrWhiteSpace(password))
+                    builder.Password = password;
 
-                    if (!string.IsNullOrWhiteSpace(password))
-                        builder.Password = password;
-
-                    services.AddDbContext<ApplicationDbContext>(
-                        options => options.UseNpgsql(
-                            builder.ConnectionString, x => x.MigrationsHistoryTable(ApplicationDbContext.SchemaTableName)
-                        )
-                    );
-                }
+                services.AddDbContext<ApplicationDbContext>(
+                    options => options.UseNpgsql(builder.ConnectionString)
+                );
+            }
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseSwagger();
-                app.UseSwaggerUI();
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Imagine todo API V1"));
             }
 
+            app.UseRouting();
+
             app.UseAuthorization();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
