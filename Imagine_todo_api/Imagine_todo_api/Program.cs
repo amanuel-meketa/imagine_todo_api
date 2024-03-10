@@ -3,6 +3,8 @@ using Imagine_todo.Persistence;
 using Microsoft.OpenApi.Models;
 using Microsoft.Data.SqlClient;
 using Npgsql;
+using Imagine_todo.application.Contracts.Persistence;
+using Imagine_todo.Persistence.Repositorys;
 
 namespace YourNamespace
 {
@@ -33,6 +35,7 @@ namespace YourNamespace
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddScoped<ITodoRepository, TodoRepository>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });

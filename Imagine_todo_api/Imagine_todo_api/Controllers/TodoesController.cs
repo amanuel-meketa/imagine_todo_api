@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Imagine_todo.domain;
-using Imagine_todo.Persistence;
+using Imagine_todo.application.Contracts.Persistence;
 
 namespace Imagine_todo_api.Controllers
 {
@@ -9,88 +8,46 @@ namespace Imagine_todo_api.Controllers
     [ApiController]
     public class TodoesController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
-
-        public TodoesController(ApplicationDbContext context)
+        private readonly ITodoRepository _todoRepository;
+        public TodoesController(ITodoRepository todoRepository)
         {
-            _context = context;
+            _todoRepository = todoRepository;
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Todo>>> GetTodo()
+        public async Task<ActionResult<List<Todo>>> Get()
         {
-            return await _context.todos.ToListAsync();
+            return Ok(await _todoRepository.GetAll());
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Todo>> GetTodo(Guid id)
+        public async Task<Todo> Get(Guid id)
         {
-            var todo = await _context.todos.FindAsync(id);
-
-            if (todo == null)
-            {
-                return NotFound();
-            }
-
-            return todo;
-        }
-
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutTodo(Guid id, Todo todo)
-        {
-            if (id != todo.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(todo).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!TodoExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
+            return await _todoRepository.Get(id);
         }
 
         [HttpPost]
-        public async Task<ActionResult<Todo>> PostTodo(Todo todo)
+        public async Task<ActionResult<Guid>> Post([FromBody] Todo todo)
         {
-            _context.todos.Add(todo);
-            await _context.SaveChangesAsync();
+            var response = await _todoRepository.Add(todo);
+            var locationUri = $"{Request.Scheme}://{Request.Host.ToUriComponent()}/api/Todo/{response}";
 
-            return CreatedAtAction("GetTodo", new { id = todo.Id }, todo);
+            return Created(locationUri, response);
         }
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteTodo(Guid id)
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult> Put([FromBody] Todo todo)
         {
-            var todo = await _context.todos.FindAsync(id);
-            if (todo == null)
-            {
-                return NotFound();
-            }
-
-            _context.todos.Remove(todo);
-            await _context.SaveChangesAsync();
-
+            await _todoRepository.Update(todo);
             return NoContent();
         }
 
-        private bool TodoExists(Guid id)
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> Delete(Todo entity)
         {
-            return _context.todos.Any(e => e.Id == id);
+            await _todoRepository.Delete(entity);
+            return NoContent();
         }
     }
 }
