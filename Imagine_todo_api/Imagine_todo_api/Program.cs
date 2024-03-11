@@ -5,6 +5,7 @@ using Microsoft.Data.SqlClient;
 using Npgsql;
 using Imagine_todo.application.Contracts.Persistence;
 using Imagine_todo.Persistence.Repositorys;
+using System.Reflection;
 
 namespace YourNamespace
 {
@@ -15,8 +16,7 @@ namespace YourNamespace
             CreateHostBuilder(args).Build().Run();
         }
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
+        public static IHostBuilder CreateHostBuilder(string[] args) => Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
@@ -35,10 +35,12 @@ namespace YourNamespace
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
+
             services.AddScoped<ITodoRepository, TodoRepository>();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Todo API", Version = "v1" });
             });
 
             const string DBMS_SQL_SERVER = "SQLServer";
