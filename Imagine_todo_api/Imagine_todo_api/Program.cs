@@ -6,6 +6,7 @@ using Npgsql;
 using Imagine_todo.application.Contracts.Persistence;
 using Imagine_todo.Persistence.Repositorys;
 using System.Reflection;
+using MediatR;
 
 namespace YourNamespace
 {
@@ -36,7 +37,7 @@ namespace YourNamespace
         {
             services.AddControllers();
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
-
+            services.AddMediatR(Assembly.GetExecutingAssembly());
             services.AddScoped<ITodoRepository, TodoRepository>();
             services.AddSwaggerGen(c =>
             {
