@@ -20,6 +20,7 @@ namespace Imagine_todo.application.Features.Todos.Handler.Commands
         {
             var respons = await _todoRepository.Get(request.todoDto.Id);
             _mapper.Map(request.todoDto, respons);
+            await _todoRepository.Update(respons);
 
             return Unit.Value;
         }

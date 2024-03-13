@@ -1,52 +1,73 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Imagine_todo.domain;
-using Imagine_todo.application.Contracts.Persistence;
+using MediatR;
+using Imagine_todo.application.Features.Todos.Request.Queries;
+using Imagine_todo.application.Dtos;
+using Imagine_todo.application.Features.Todos.Request.Commands;
 
 namespace Imagine_todo_api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/todos")]
     [ApiController]
     public class TodoesController : ControllerBase
     {
-        private readonly ITodoRepository _todoRepository;
-        public TodoesController(ITodoRepository todoRepository)
+        private readonly IMediator _mediator;
+
+        public TodoesController(IMediator mediator, IHttpContextAccessor httpContextAccessor)
         {
-            _todoRepository = todoRepository;
+            _mediator = mediator;
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<Todo>>> Get()
+        public async Task<ActionResult<List<TodoListDto>>> Get()
         {
-            return Ok(await _todoRepository.GetAll());
+            var response = await _mediator.Send(new GetTodoListRequest());
+            return Ok(response);
         }
 
         [HttpGet("{id}")]
-        public async Task<Todo> Get(Guid id)
+        public async Task<TodoDto> Get(Guid id)
         {
-            return await _todoRepository.Get(id);
+            var detailQuerie = new GetTodoDetailRequest
+            {
+                Id = id
+            };
+
+            return await _mediator.Send(detailQuerie);
         }
 
         [HttpPost]
-        public async Task<ActionResult<Guid>> Post([FromBody] Todo todo)
+        public async Task<ActionResult<Guid>> Post([FromBody] TodoCreateDto todo)
         {
-            var response = await _todoRepository.Add(todo);
+            var createCommand = new CreateTodoCommand
+            {
+                todoCreateDto = todo  
+            };
+
+            var response = await _mediator.Send(createCommand);
             var locationUri = $"{Request.Scheme}://{Request.Host.ToUriComponent()}/api/Todo/{response}";
 
             return Created(locationUri, response);
         }
 
-
         [HttpPut("{id}")]
-        public async Task<ActionResult> Put([FromBody] Todo todo)
+        public async Task<ActionResult> Put([FromBody] TodoDto todo)
         {
-            await _todoRepository.Update(todo);
+            var updateCommand = new UpdateTodoCommand
+            {
+                todoDto = todo
+            };
+            await _mediator.Send(updateCommand);
             return NoContent();
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult> Delete(Todo entity)
+        public async Task<ActionResult> Delete(Guid id)
         {
-            await _todoRepository.Delete(entity);
+            var detailQuerie = new DeleteTodoCommand
+            {
+                Id = id
+            };
+            await _mediator.Send(detailQuerie);
             return NoContent();
         }
     }
