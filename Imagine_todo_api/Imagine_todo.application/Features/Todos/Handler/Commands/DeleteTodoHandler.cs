@@ -1,4 +1,5 @@
 ﻿using Imagine_todo.application.Contracts.Persistence;
+using Imagine_todo.application.Exceptions;
 using Imagine_todo.application.Features.Todos.Request.Commands;
 using MediatR;
 
@@ -15,6 +16,9 @@ namespace Imagine_todo.application.Features.Todos.Handler.Commands
         public async Task<Unit> Handle(DeleteTodoCommand request, CancellationToken cancellationToken)
         {
             var todoDetail = await _todoRepository.Get(request.Id);
+            if (todoDetail == null)
+                throw new NotFoundException( "item could not be found");
+
             await _todoRepository.Delete(todoDetail);
             return Unit.Value;
         }

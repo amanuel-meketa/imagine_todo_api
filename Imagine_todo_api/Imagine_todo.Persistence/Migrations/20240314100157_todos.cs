@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Imagine_todo.Persistence.Migrations
 {
     /// <inheritdoc />
-    public partial class imman : Migration
+    public partial class todos : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

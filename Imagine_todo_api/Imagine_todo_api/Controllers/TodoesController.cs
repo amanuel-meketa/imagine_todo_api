@@ -44,7 +44,7 @@ namespace Imagine_todo_api.Controllers
             };
 
             var response = await _mediator.Send(createCommand);
-            var locationUri = $"{Request.Scheme}://{Request.Host.ToUriComponent()}/api/Todo/{response}";
+            var locationUri = $"{Request.Scheme}://{Request.Host.ToUriComponent()}/api/todos/{response}";
 
             return Created(locationUri, response);
         }

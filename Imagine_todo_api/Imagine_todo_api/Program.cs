@@ -3,6 +3,7 @@ using Imagine_todo.application;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
 using MediatR;
+using Imagine_todo_api.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,7 +19,11 @@ builder.Services.AddSwaggerGen(options =>
     options.SwaggerDoc("v1", new OpenApiInfo { Title = "todo api", Version = "v1" });
 });
 
+builder.Services.AddScoped<ExceptionHandlingMiddleware>();
+
 var app = builder.Build();
+
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 app.UseAuthentication();
 if (app.Environment.IsDevelopment())

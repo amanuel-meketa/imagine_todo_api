@@ -10,10 +10,9 @@ namespace Imagine_todo.application.Dtos.Validator
                 .NotEmpty().WithMessage("{PropertyName} is required.")
                 .MaximumLength(50).WithMessage("{PropertyName} must not exceed {MaxLength} characters.");
 
-            RuleFor(v => v.Title)
+            RuleFor(v => v.Description)
                 .NotEmpty().WithMessage("{PropertyName} is required.")
-                .MaximumLength(20).WithMessage("{PropertyName} must not exceed {MaxLength} characters.");
-
+                .MaximumLength(300).WithMessage("{PropertyName} must not exceed {MaxLength} characters.");
 
             RuleFor(v => v.DueDate)
                 .GreaterThan(DateTime.Today).WithMessage("{PropertyName} must be greater than the current date.");
