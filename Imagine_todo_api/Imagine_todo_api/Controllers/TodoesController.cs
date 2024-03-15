@@ -70,5 +70,19 @@ namespace Imagine_todo_api.Controllers
             await _mediator.Send(detailQuerie);
             return NoContent();
         }
+
+        [HttpGet("filter")]
+        public async Task<ActionResult<List<TodoListDto>>> GetFilteredTasks([FromQuery] DateTime? dueDate, [FromQuery] string status)
+        {
+            var todos = await _mediator.Send(new GetTodoListRequest());
+
+            if (dueDate.HasValue)
+                todos = todos.Where(todo => todo.DueDate.Date == dueDate.Value.Date).ToList();
+
+            if (!string.IsNullOrEmpty(status))
+                todos = todos.Where(todo => todo.Status == status).ToList();
+
+            return Ok(todos);
+        }
     }
 }
