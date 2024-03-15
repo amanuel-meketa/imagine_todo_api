@@ -3,11 +3,13 @@ using MediatR;
 using Imagine_todo.application.Features.Todos.Request.Queries;
 using Imagine_todo.application.Dtos;
 using Imagine_todo.application.Features.Todos.Request.Commands;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Imagine_todo_api.Controllers
 {
     [Route("api/todos")]
     [ApiController]
+    [Authorize]
     public class TodoesController : ControllerBase
     {
         private readonly IMediator _mediator;
