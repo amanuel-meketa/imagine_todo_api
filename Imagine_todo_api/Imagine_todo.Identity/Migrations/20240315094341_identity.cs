@@ -174,8 +174,8 @@ namespace Imagine_todo.Identity.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "8e445865-a24d-4543-a6c6-9443d048cdb9", 0, "a93f3cfc-be5f-4fcf-94a9-704265a33758", "admin@email.com", true, "System", "Admin", false, null, "ADMIN@EMAIL.COM", "ADMIN@EMAIL.COM", "AQAAAAIAAYagAAAAEHXXZ9sZZ+26Tmme6fSBBWPv4fiCOf4I/xtIWkOpwlcrhGIN0XKmY6n4AN74F0OUdg==", null, false, "5f1027b1-2d5a-4a81-a921-96448389cd38", false, "admin@email.com" },
-                    { "9e224968-33e4-4652-b7b7-8574d048cdb9", 0, "948acc8a-cc26-4ca7-8fc7-4487d2fcefbd", "user@email.com", true, "Test", "User", false, null, "USER@EMAIL.COM", "USER@EMAIL.COM", "AQAAAAIAAYagAAAAEP0oIyp6zRK1+3x9gPLB4v655uwoB6GEiOeG9XGnldHn7uEbvEH75lEfZwV/QkDKNA==", null, false, "3ae2957e-b09f-4ea0-af4b-59e48614f64b", false, "user@email.com" }
+                    { "8e445865-a24d-4543-a6c6-9443d048cdb9", 0, "12641afb-c2a4-4215-8226-5efc7245a699", "admin@email.com", true, "System", "Admin", false, null, "ADMIN@EMAIL.COM", "ADMIN@EMAIL.COM", "AQAAAAIAAYagAAAAEAYGn9Cjx8uI0urLurVO5PE2jSyABZAKXD99RO663q2tz6STHHM9mYjGXG8oZ/7AHw==", null, false, "aac9e4be-0a3a-41d8-b728-ec8509ef0145", false, "admin@email.com" },
+                    { "9e224968-33e4-4652-b7b7-8574d048cdb9", 0, "0c249f67-1b56-4c77-b37d-ce53c5bbd49b", "user@email.com", true, "Test", "User", false, null, "USER@EMAIL.COM", "USER@EMAIL.COM", "AQAAAAIAAYagAAAAEB4EejLsgvqNuL3XdeUnJ+2y/8V1Y/HjDd9cqDH5pwcKBW6ySKJ7YxBLUmzG5fWahA==", null, false, "818dd776-3025-48a1-a5eb-2a4486a00fe9", false, "user@email.com" }
                 });
 
             migrationBuilder.InsertData(

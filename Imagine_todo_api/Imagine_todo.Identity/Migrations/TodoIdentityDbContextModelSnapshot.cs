@@ -97,7 +97,7 @@ namespace Imagine_todo.Identity.Migrations
                         {
                             Id = "8e445865-a24d-4543-a6c6-9443d048cdb9",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "a93f3cfc-be5f-4fcf-94a9-704265a33758",
+                            ConcurrencyStamp = "12641afb-c2a4-4215-8226-5efc7245a699",
                             Email = "admin@email.com",
                             EmailConfirmed = true,
                             FirstName = "System",
@@ -105,9 +105,9 @@ namespace Imagine_todo.Identity.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@EMAIL.COM",
                             NormalizedUserName = "ADMIN@EMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEHXXZ9sZZ+26Tmme6fSBBWPv4fiCOf4I/xtIWkOpwlcrhGIN0XKmY6n4AN74F0OUdg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEAYGn9Cjx8uI0urLurVO5PE2jSyABZAKXD99RO663q2tz6STHHM9mYjGXG8oZ/7AHw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "5f1027b1-2d5a-4a81-a921-96448389cd38",
+                            SecurityStamp = "aac9e4be-0a3a-41d8-b728-ec8509ef0145",
                             TwoFactorEnabled = false,
                             UserName = "admin@email.com"
                         },
@@ -115,7 +115,7 @@ namespace Imagine_todo.Identity.Migrations
                         {
                             Id = "9e224968-33e4-4652-b7b7-8574d048cdb9",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "948acc8a-cc26-4ca7-8fc7-4487d2fcefbd",
+                            ConcurrencyStamp = "0c249f67-1b56-4c77-b37d-ce53c5bbd49b",
                             Email = "user@email.com",
                             EmailConfirmed = true,
                             FirstName = "Test",
@@ -123,9 +123,9 @@ namespace Imagine_todo.Identity.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "USER@EMAIL.COM",
                             NormalizedUserName = "USER@EMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEP0oIyp6zRK1+3x9gPLB4v655uwoB6GEiOeG9XGnldHn7uEbvEH75lEfZwV/QkDKNA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEB4EejLsgvqNuL3XdeUnJ+2y/8V1Y/HjDd9cqDH5pwcKBW6ySKJ7YxBLUmzG5fWahA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "3ae2957e-b09f-4ea0-af4b-59e48614f64b",
+                            SecurityStamp = "818dd776-3025-48a1-a5eb-2a4486a00fe9",
                             TwoFactorEnabled = false,
                             UserName = "user@email.com"
                         });
