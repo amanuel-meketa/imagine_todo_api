@@ -3,15 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34322.80
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Imagine_todo_api", "Imagine_todo_api\Imagine_todo_api.csproj", "{2857E9C5-D37F-42BF-8879-5515A4898F2E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Imagine_todo_api", "Imagine_todo_api\Imagine_todo_api.csproj", "{2857E9C5-D37F-42BF-8879-5515A4898F2E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Imagine_todo.application", "Imagine_todo.application\Imagine_todo.application.csproj", "{1EF5F602-C1C7-4D90-ADA8-A442C7E1C0A1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Imagine_todo.application", "Imagine_todo.application\Imagine_todo.application.csproj", "{1EF5F602-C1C7-4D90-ADA8-A442C7E1C0A1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Imagine_todo.domain", "Imagine_todo.domain\Imagine_todo.domain.csproj", "{D197F3D7-1F38-4A1B-BD56-7CB38E9AEDD9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Imagine_todo.domain", "Imagine_todo.domain\Imagine_todo.domain.csproj", "{D197F3D7-1F38-4A1B-BD56-7CB38E9AEDD9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Imagine_todo.infrastructure", "Imagine_todo.infrastructure\Imagine_todo.infrastructure.csproj", "{AE039F26-D93C-4257-8BED-FCB275494AA8}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Imagine_todo.Persistence", "Imagine_todo.Persistence\Imagine_todo.Persistence.csproj", "{D23B2981-BD08-4FDD-A67C-EA66E27C5D62}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Imagine_todo.Persistence", "Imagine_todo.Persistence\Imagine_todo.Persistence.csproj", "{D23B2981-BD08-4FDD-A67C-EA66E27C5D62}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,10 +29,6 @@ Global
 		{D197F3D7-1F38-4A1B-BD56-7CB38E9AEDD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D197F3D7-1F38-4A1B-BD56-7CB38E9AEDD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D197F3D7-1F38-4A1B-BD56-7CB38E9AEDD9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AE039F26-D93C-4257-8BED-FCB275494AA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AE039F26-D93C-4257-8BED-FCB275494AA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AE039F26-D93C-4257-8BED-FCB275494AA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AE039F26-D93C-4257-8BED-FCB275494AA8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D23B2981-BD08-4FDD-A67C-EA66E27C5D62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D23B2981-BD08-4FDD-A67C-EA66E27C5D62}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D23B2981-BD08-4FDD-A67C-EA66E27C5D62}.Release|Any CPU.ActiveCfg = Release|Any CPU
