@@ -4,7 +4,7 @@ using Imagine_todo.application.Model.Identity;
 
 namespace Imagine_todo_api.Controllers
 {
-    [Route("api/todos")]
+    [Route("api/users")]
     [ApiController]
     public class UsersController : ControllerBase
     {

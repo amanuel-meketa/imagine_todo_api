@@ -75,7 +75,7 @@ namespace Imagine_todo.Identity.Services
                 if (!result.Succeeded)
                     throw new Exception($"{result.Errors}");
 
-                await _userManager.AddToRoleAsync(user, "Employee");
+                await _userManager.AddToRoleAsync(user, "User");
                 return new RegistrationResponse() { UserId = user.Id };  
             }
             else

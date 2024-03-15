@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Imagine_todo_api.Controllers
 {
-    [Route("api/todos")]
+    [Route("api/tasks")]
     [ApiController]
     [Authorize]
     public class TodoesController : ControllerBase
@@ -62,6 +62,7 @@ namespace Imagine_todo_api.Controllers
             return NoContent();
         }
 
+        [Authorize(Roles = "Administrator")]
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(Guid id)
         {
