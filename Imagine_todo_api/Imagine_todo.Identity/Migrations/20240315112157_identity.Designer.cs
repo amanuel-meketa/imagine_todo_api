@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Imagine_todo.Identity.Migrations
 {
     [DbContext(typeof(TodoIdentityDbContext))]
-    [Migration("20240315094341_identity")]
+    [Migration("20240315112157_identity")]
     partial class identity
     {
         /// <inheritdoc />
@@ -100,7 +100,7 @@ namespace Imagine_todo.Identity.Migrations
                         {
                             Id = "8e445865-a24d-4543-a6c6-9443d048cdb9",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "12641afb-c2a4-4215-8226-5efc7245a699",
+                            ConcurrencyStamp = "8b163d5c-d159-4e94-93a9-67155ddf7d2a",
                             Email = "admin@email.com",
                             EmailConfirmed = true,
                             FirstName = "System",
@@ -108,9 +108,9 @@ namespace Imagine_todo.Identity.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@EMAIL.COM",
                             NormalizedUserName = "ADMIN@EMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEAYGn9Cjx8uI0urLurVO5PE2jSyABZAKXD99RO663q2tz6STHHM9mYjGXG8oZ/7AHw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEAv604xTej8vUCj4tGgPZwkxTFVbkJJUvatfV4bc5pynVpPTq2ld7EiAFF2oBAFzkw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "aac9e4be-0a3a-41d8-b728-ec8509ef0145",
+                            SecurityStamp = "525545fd-be84-48f4-a36b-f01f0fccc3bb",
                             TwoFactorEnabled = false,
                             UserName = "admin@email.com"
                         },
@@ -118,7 +118,7 @@ namespace Imagine_todo.Identity.Migrations
                         {
                             Id = "9e224968-33e4-4652-b7b7-8574d048cdb9",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "0c249f67-1b56-4c77-b37d-ce53c5bbd49b",
+                            ConcurrencyStamp = "60d29e51-db47-486e-b3e0-571f0014b142",
                             Email = "user@email.com",
                             EmailConfirmed = true,
                             FirstName = "Test",
@@ -126,9 +126,9 @@ namespace Imagine_todo.Identity.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "USER@EMAIL.COM",
                             NormalizedUserName = "USER@EMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEB4EejLsgvqNuL3XdeUnJ+2y/8V1Y/HjDd9cqDH5pwcKBW6ySKJ7YxBLUmzG5fWahA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEA0T3C1IV6MQ3cYyPIgWMIi8Pmy9uSPHQYYgjEkClHM6n03tMNPirZqfbV210uhw0A==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "818dd776-3025-48a1-a5eb-2a4486a00fe9",
+                            SecurityStamp = "0b5137f2-de51-4fa0-a7d9-d062787d1d0a",
                             TwoFactorEnabled = false,
                             UserName = "user@email.com"
                         });
@@ -164,8 +164,8 @@ namespace Imagine_todo.Identity.Migrations
                         new
                         {
                             Id = "cac43a6e-f7bb-4448-baaf-1add431ccbbf",
-                            Name = "Test",
-                            NormalizedName = "TEST"
+                            Name = "User",
+                            NormalizedName = "User"
                         },
                         new
                         {

@@ -22,6 +22,7 @@ namespace Imagine_todo.Identity
                      b => b.MigrationsAssembly(typeof(TodoIdentityDbContext).Assembly.FullName)));
             services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<TodoIdentityDbContext>().AddDefaultTokenProviders();
             services.AddTransient<IAuthService, AuthService>();
+            services.AddTransient<IUserService, UserService>();
             services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
