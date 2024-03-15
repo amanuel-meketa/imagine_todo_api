@@ -1,5 +1,6 @@
 using Imagine_todo.Persistence;
 using Imagine_todo.application;
+using Imagine_todo.Identity;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
 using MediatR;
@@ -7,10 +8,11 @@ using Imagine_todo_api.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.ConfigureApplicationServices();
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
+builder.Services.ConfigureApplicationServices();
 builder.Services.ConfigurePersistenceServices(builder.Configuration);
+builder.Services.ConfigureIdentityServices(builder.Configuration);
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddControllers();
 builder.Services.AddSwaggerGen();

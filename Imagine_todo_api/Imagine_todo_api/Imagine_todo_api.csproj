@@ -29,6 +29,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Imagine_todo.application\Imagine_todo.application.csproj" />
+    <ProjectReference Include="..\Imagine_todo.Identity\Imagine_todo.Identity.csproj" />
     <ProjectReference Include="..\Imagine_todo.Persistence\Imagine_todo.Persistence.csproj" />
   </ItemGroup>
 
