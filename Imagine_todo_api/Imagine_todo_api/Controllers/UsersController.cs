@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Imagine_todo.application.Contracts.Identity;
 using Imagine_todo.application.Model.Identity;
+using System.Security.Claims;
 
 namespace Imagine_todo_api.Controllers
 {
@@ -53,6 +54,25 @@ namespace Imagine_todo_api.Controllers
         {
             await _userService.DeleteUser(id);
             return NoContent();
+        }
+
+        [HttpGet("current-user")]
+        public async Task<ActionResult<User>> GetCurrentLoggedInUser()
+        {
+            var user = HttpContext.User;
+
+            if (!user.Identity.IsAuthenticated)
+                return Unauthorized("No user authenticated.");
+
+            var userIdClaim = user.FindFirst("uid");
+            if (userIdClaim == null || !Guid.TryParse(userIdClaim.Value, out Guid userGuid))
+                return BadRequest("Invalid user ID claim.");
+
+            var userProfile = await _userService.GetUser(userGuid);
+            if (userProfile == null)
+                return NotFound("User not found.");
+
+            return Ok(userProfile);
         }
     }
 }
