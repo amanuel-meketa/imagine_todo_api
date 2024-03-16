@@ -1,4 +1,4 @@
-﻿using Imagine_todo.Identity.Models;
+﻿using Imagine_todo.domain;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;

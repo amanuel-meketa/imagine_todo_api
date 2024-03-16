@@ -29,10 +29,7 @@ namespace Imagine_todo_api.Controllers
         [HttpGet("{id}")]
         public async Task<TodoDto> Get(Guid id)
         {
-            var detailQuerie = new GetTodoDetailRequest
-            {
-                Id = id
-            };
+            var detailQuerie = new GetTodoDetailRequest { Id = id };
 
             return await _mediator.Send(detailQuerie);
         }
@@ -40,11 +37,7 @@ namespace Imagine_todo_api.Controllers
         [HttpPost]
         public async Task<ActionResult<Guid>> Post([FromBody] TodoCreateDto todo)
         {
-            var createCommand = new CreateTodoCommand
-            {
-                todoCreateDto = todo  
-            };
-
+            var createCommand = new CreateTodoCommand { todoCreateDto = todo };
             var response = await _mediator.Send(createCommand);
             var locationUri = $"{Request.Scheme}://{Request.Host.ToUriComponent()}/api/todos/{response}";
 
@@ -54,11 +47,9 @@ namespace Imagine_todo_api.Controllers
         [HttpPut("{id}")]
         public async Task<ActionResult> Put([FromBody] TodoDto todo)
         {
-            var updateCommand = new UpdateTodoCommand
-            {
-                todoDto = todo
-            };
+            var updateCommand = new UpdateTodoCommand { todoDto = todo };
             await _mediator.Send(updateCommand);
+
             return NoContent();
         }
 
@@ -66,11 +57,9 @@ namespace Imagine_todo_api.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(Guid id)
         {
-            var detailQuerie = new DeleteTodoCommand
-            {
-                Id = id
-            };
+            var detailQuerie = new DeleteTodoCommand { Id = id };
             await _mediator.Send(detailQuerie);
+
             return NoContent();
         }
 

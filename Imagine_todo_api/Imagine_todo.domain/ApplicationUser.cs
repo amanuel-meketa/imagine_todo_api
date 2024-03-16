@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace Imagine_todo.Identity.Models
+namespace Imagine_todo.domain
 {
     public class ApplicationUser : IdentityUser
     {

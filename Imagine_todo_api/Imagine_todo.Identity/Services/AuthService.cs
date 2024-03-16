@@ -1,6 +1,6 @@
 ﻿using Imagine_todo.application.Contracts.Identity;
 using Imagine_todo.application.Model.Identity;
-using Imagine_todo.Identity.Models;
+using Imagine_todo.domain;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;

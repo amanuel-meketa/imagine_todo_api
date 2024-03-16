@@ -1,5 +1,5 @@
 ﻿using Imagine_todo.Identity.Configurations;
-using Imagine_todo.Identity.Models;
+using Imagine_todo.domain;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 

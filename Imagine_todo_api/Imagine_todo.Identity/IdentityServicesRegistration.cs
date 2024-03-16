@@ -1,6 +1,6 @@
 ﻿using Imagine_todo.application.Contracts.Identity;
 using Imagine_todo.application.Model.Identity;
-using Imagine_todo.Identity.Models;
+using Imagine_todo.domain;
 using Imagine_todo.Identity.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
