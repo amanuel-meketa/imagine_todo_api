@@ -72,19 +72,13 @@ namespace Imagine_todo_api.Controllers
             if (!user.Identity.IsAuthenticated)
                 return Unauthorized("No user authenticated.");
 
-            var userIdClaim = user.FindFirst("uid");
+            var userIdClaim = HttpContext.User.FindFirst("uid");
 
             if (userIdClaim == null || !Guid.TryParse(userIdClaim.Value, out Guid userGuid))
                 return BadRequest("Invalid user ID claim.");
 
             var detailQuerie = new GetUserDetailRequest { Id = userGuid };
-
-            var userProfile = await _mediator.Send(detailQuerie);
-
-            if (userProfile == null)
-                return NotFound("User not found.");
-
-            return Ok(userProfile);
+            return Ok(await _mediator.Send(detailQuerie));
         }
     }
 }

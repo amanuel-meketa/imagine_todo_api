@@ -9,7 +9,7 @@ namespace Imagine_todo_api.Controllers
 {
     [Route("api/tasks")]
     [ApiController]
-    [Authorize]
+    //[Authorize(Roles = "Administrator")]
     public class TodoesController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -53,7 +53,6 @@ namespace Imagine_todo_api.Controllers
             return NoContent();
         }
 
-        //[Authorize(Roles = "Administrator")]
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(Guid id)
         {
@@ -75,6 +74,19 @@ namespace Imagine_todo_api.Controllers
                 todos = todos.Where(todo => todo.Status == status).ToList();
 
             return Ok(todos);
+        }
+
+        [HttpPatch("assign-task")]
+        public async Task<ActionResult> AssignTask(Guid todoId, Guid userId)
+        {
+           var assignQuerie = new AssignTaskCommand
+           { 
+              TodoId = todoId ,
+              UserId = userId
+            };
+
+           await _mediator.Send(assignQuerie);
+            return NoContent();
         }
     }
 }
