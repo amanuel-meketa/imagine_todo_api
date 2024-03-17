@@ -13,7 +13,8 @@ namespace Imagine_todo.application.Profiles
             CreateMap<Todo, TodoCreateDto>().ReverseMap();
             CreateMap<Todo, TodoListDto>().ReverseMap();
 
-            CreateMap<Model.Identity.User, UserDto>().ReverseMap();
+            CreateMap<ApplicationUser, UserDto>().ReverseMap();
+            CreateMap<ApplicationUser, UpdateUserDto>().ReverseMap();
         }
     }
 }

@@ -6,7 +6,7 @@ namespace Imagine_todo.application.Dtos.Validator
     {
         public UpdateTodoDtoValidator()
         {
-            Include(new ITodoDtoValidator());
+            Include(new TodoDtoValidator());
             RuleFor(v => v.Id).NotNull().NotEmpty().WithMessage("{PropertyName} is required.");
         }
     }

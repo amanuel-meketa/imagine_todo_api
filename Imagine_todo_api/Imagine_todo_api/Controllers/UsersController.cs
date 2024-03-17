@@ -26,10 +26,10 @@ namespace Imagine_todo_api.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<ActionResult<RegistrationResponse>> Register(RegistrationRequest request)
+        public async Task<ActionResult<RegistrationResponse>> Register(CreatUserDto request)
         {
             var detailQuerie = new CreateUserCommand { userDto = request };
-            var response = await _mediator.Send(request);
+            var response = await _mediator.Send(detailQuerie);
             var locationUri = $"{Request.Scheme}://{Request.Host.ToUriComponent()}/api/todos/{response}";
 
             return Created(locationUri, response);

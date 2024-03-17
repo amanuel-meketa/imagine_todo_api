@@ -2,9 +2,9 @@
 
 namespace Imagine_todo.application.Dtos.Validator
 {
-    public class ITodoDtoValidator : AbstractValidator<ITodoDto>
+    public class TodoDtoValidator : AbstractValidator<ITodoDto>
     {
-        public ITodoDtoValidator()
+        public TodoDtoValidator()
         {
             RuleFor(v => v.Title)
                 .NotEmpty().WithMessage("{PropertyName} is required.")

@@ -6,7 +6,7 @@ namespace Imagine_todo.application.Dtos.Validator
     {
         public CreateTodoDtoValidator()
         {
-            Include(new ITodoDtoValidator());
+            Include(new TodoDtoValidator());
         }
     }
 }

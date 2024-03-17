@@ -20,6 +20,7 @@ namespace Imagine_todo.application.Features.User.Handler.Queries
         public async Task<UserDto> Handle(GetUserDetailRequest request, CancellationToken cancellationToken)
         {
            var response = await _userService.GetUser(request.Id);
+
             return _mapper.Map<UserDto>(response);
         }
     }

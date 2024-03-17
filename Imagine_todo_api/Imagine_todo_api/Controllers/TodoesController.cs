@@ -53,7 +53,7 @@ namespace Imagine_todo_api.Controllers
             return NoContent();
         }
 
-        [Authorize(Roles = "Administrator")]
+        //[Authorize(Roles = "Administrator")]
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(Guid id)
         {

@@ -1,4 +1,6 @@
 ﻿using Imagine_todo.application.Contracts.Identity;
+using Imagine_todo.application.Dtos.Identity;
+using Imagine_todo.application.Exceptions;
 using Imagine_todo.application.Model.Identity;
 using Imagine_todo.domain;
 using Microsoft.AspNetCore.Identity;
@@ -28,18 +30,17 @@ namespace Imagine_todo.Identity.Services
         public async Task<AuthResponse> Login(AuthRequest request)
         {
             var user = await _userManager.FindByEmailAsync(request.Email);
-
             if (user == null)
-                throw new Exception($"User with {request.Email} not found.");
+                throw new NotFoundException($"User with email '{request.Email}' not found.");
 
             var result = await _signInManager.PasswordSignInAsync(user.UserName, request.Password, false, lockoutOnFailure: false);
-
             if (!result.Succeeded)
-                throw new Exception($"Credentials for '{request.Email} aren't valid'.");
+                throw new BadRequestException($"Invalid credentials for '{request.Email}'.");
 
+            // Generate JWT token
             JwtSecurityToken jwtSecurityToken = await GenerateToken(user);
 
-            AuthResponse response = new AuthResponse
+            var response = new AuthResponse
             {
                 Id = user.Id,
                 Token = new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken),
@@ -50,12 +51,15 @@ namespace Imagine_todo.Identity.Services
             return response;
         }
 
-        public async Task<RegistrationResponse> Register(RegistrationRequest request)
+        public async Task<RegistrationResponse> Register(CreatUserDto request)
         {
             var existingUser = await _userManager.FindByNameAsync(request.UserName);
-
             if (existingUser != null)
-                throw new Exception($"Username '{request.UserName}' already exists.");
+                throw new ConflictException($"Username '{request.UserName}' already exists.");
+
+            var existingEmail = await _userManager.FindByEmailAsync(request.Email);
+            if (existingEmail != null)
+                throw new ConflictException($"Email {request.Email} already exists.");
 
             var user = new ApplicationUser
             {
@@ -66,20 +70,13 @@ namespace Imagine_todo.Identity.Services
                 EmailConfirmed = true
             };
 
-            var existingEmail = await _userManager.FindByEmailAsync(request.Email);
+            var result = await _userManager.CreateAsync(user, request.Password);
+            if (!result.Succeeded)
+                throw new Exception($"Failed to create user. Errors: {string.Join(", ", result.Errors)}");
 
-            if (existingEmail == null)
-            {
-                var result = await _userManager.CreateAsync(user, request.Password);
+            await _userManager.AddToRoleAsync(user, "User");
 
-                if (!result.Succeeded)
-                    throw new Exception($"{result.Errors}");
-
-                await _userManager.AddToRoleAsync(user, "User");
-                return new RegistrationResponse() { UserId = user.Id };  
-            }
-            else
-                throw new Exception($"Email {request.Email} already exists.");
+            return new RegistrationResponse() { UserId = user.Id };
         }
 
         private async Task<JwtSecurityToken> GenerateToken(ApplicationUser user)
@@ -87,32 +84,34 @@ namespace Imagine_todo.Identity.Services
             var userClaims = await _userManager.GetClaimsAsync(user);
             var roles = await _userManager.GetRolesAsync(user);
 
-            var roleClaims = new List<Claim>();
+            // Prepare role claims
+            var roleClaims = roles.Select(role => new Claim(ClaimTypes.Role, role)).ToList();
 
-            for (int i = 0; i < roles.Count; i++)
-            {
-                roleClaims.Add(new Claim(ClaimTypes.Role, roles[i]));
-            }
-
-            var claims = new[]
+            // Prepare claims
+            var claims = new List<Claim>
             {
                 new Claim(JwtRegisteredClaimNames.Sub, user.UserName),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 new Claim(JwtRegisteredClaimNames.Email, user.Email),
                 new Claim("uid", user.Id)
-            }
-            .Union(userClaims)
-            .Union(roleClaims);
+            };
 
+            // Combine user claims, role claims, and predefined claims
+            claims.AddRange(userClaims);
+            claims.AddRange(roleClaims);
+
+            // Prepare symmetric security key and signing credentials
             var symmetricSecurityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.Key));
             var signingCredentials = new SigningCredentials(symmetricSecurityKey, SecurityAlgorithms.HmacSha256);
 
+            // Generate JWT security token
             var jwtSecurityToken = new JwtSecurityToken(
                 issuer: _jwtSettings.Issuer,
                 audience: _jwtSettings.Audience,
                 claims: claims,
                 expires: DateTime.UtcNow.AddMinutes(_jwtSettings.DurationInMinutes),
                 signingCredentials: signingCredentials);
+
             return jwtSecurityToken;
         }
     }

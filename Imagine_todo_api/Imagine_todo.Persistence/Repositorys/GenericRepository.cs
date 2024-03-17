@@ -1,4 +1,5 @@
 ﻿using Imagine_todo.application.Contracts.Persistence;
+using Imagine_todo.application.Exceptions;
 using Microsoft.EntityFrameworkCore;
 
 namespace Imagine_todo.Persistence.Repositorys
@@ -18,15 +19,12 @@ namespace Imagine_todo.Persistence.Repositorys
             return entity;
         }
 
-        public async Task<bool> Exists(Guid id)
-        {
-            var isExist = await Get(id);
-            return isExist != null;
-        }
-
         public async Task<T> Get(Guid id)
         {
             var result = await _dbContext.Set<T>().FindAsync(id);
+            if (result == null)
+                throw new NotFoundException($"Task with Id '{id}' not found.");
+
             return result;
         }
 

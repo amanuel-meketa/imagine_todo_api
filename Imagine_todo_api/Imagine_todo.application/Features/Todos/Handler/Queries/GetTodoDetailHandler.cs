@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Imagine_todo.application.Contracts.Persistence;
 using Imagine_todo.application.Dtos;
-using Imagine_todo.application.Exceptions;
 using Imagine_todo.application.Features.Todos.Request.Queries;
 using MediatR;
 
@@ -21,8 +20,6 @@ namespace Imagine_todo.application.Features.Todos.Handler.Queries
         public async Task<TodoDto> Handle(GetTodoDetailRequest request, CancellationToken cancellationToken)
         {
             var respons = await _todoRepository.Get(request.Id);
-            if (respons == null)
-                throw new NotFoundException("item could not be found");
 
             return _mapper.Map<TodoDto>(respons);
         }

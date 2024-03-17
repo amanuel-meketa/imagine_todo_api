@@ -2,7 +2,6 @@
 using Imagine_todo.application.Contracts.Persistence;
 using Imagine_todo.application.Dtos;
 using Imagine_todo.application.Dtos.Validator;
-using Imagine_todo.application.Exceptions;
 using Imagine_todo.application.Features.Todos.Request.Commands;
 using MediatR;
 
@@ -24,8 +23,6 @@ namespace Imagine_todo.application.Features.Todos.Handler.Commands
             await ValidateTodoUpdateDtoAsync(request.todoDto);
 
             var todo = await _todoRepository.Get(request.todoDto.Id);
-            if (todo == null)
-                throw new NotFoundException("Item could not be found.");
 
             _mapper.Map(request.todoDto, todo);
             await _todoRepository.Update(todo);

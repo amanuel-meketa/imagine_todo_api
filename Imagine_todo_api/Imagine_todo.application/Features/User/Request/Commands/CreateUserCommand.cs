@@ -6,6 +6,6 @@ namespace Imagine_todo.application.Features.User.Request.Commands
 {
     public class CreateUserCommand : IRequest<RegistrationResponse>
     {
-        public RegistrationRequest? userDto {  get; set; }
+        public CreatUserDto? userDto {  get; set; }
     }
 }

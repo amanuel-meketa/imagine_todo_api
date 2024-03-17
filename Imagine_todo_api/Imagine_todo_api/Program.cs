@@ -8,16 +8,12 @@ using Imagine_todo_api.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services
 AddServices(builder);
 
-// Build the app
 var app = builder.Build();
 
-// Configure middleware
 ConfigureMiddleware(app);
 
-// Run the app
 app.Run();
 
 void AddServices(WebApplicationBuilder builder)
