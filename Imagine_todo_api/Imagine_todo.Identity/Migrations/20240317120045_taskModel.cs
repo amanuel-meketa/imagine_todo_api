@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Imagine_todo.Identity.Migrations
 {
     /// <inheritdoc />
-    public partial class identity : Migration
+    public partial class taskModel : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -174,8 +174,8 @@ namespace Imagine_todo.Identity.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "8e445865-a24d-4543-a6c6-9443d048cdb9", 0, "8b163d5c-d159-4e94-93a9-67155ddf7d2a", "admin@email.com", true, "System", "Admin", false, null, "ADMIN@EMAIL.COM", "ADMIN@EMAIL.COM", "AQAAAAIAAYagAAAAEAv604xTej8vUCj4tGgPZwkxTFVbkJJUvatfV4bc5pynVpPTq2ld7EiAFF2oBAFzkw==", null, false, "525545fd-be84-48f4-a36b-f01f0fccc3bb", false, "admin@email.com" },
-                    { "9e224968-33e4-4652-b7b7-8574d048cdb9", 0, "60d29e51-db47-486e-b3e0-571f0014b142", "user@email.com", true, "Test", "User", false, null, "USER@EMAIL.COM", "USER@EMAIL.COM", "AQAAAAIAAYagAAAAEA0T3C1IV6MQ3cYyPIgWMIi8Pmy9uSPHQYYgjEkClHM6n03tMNPirZqfbV210uhw0A==", null, false, "0b5137f2-de51-4fa0-a7d9-d062787d1d0a", false, "user@email.com" }
+                    { "8e445865-a24d-4543-a6c6-9443d048cdb9", 0, "60ecb462-cdbb-4fa9-8cd8-d52b4428e80f", "admin@email.com", true, "System", "Admin", false, null, "ADMIN@EMAIL.COM", "ADMIN@EMAIL.COM", "AQAAAAIAAYagAAAAEJGHP/yF8t+Qempj64qQuICHb7tJ3F1dy2INYYE5SCm3JaH8JIcAd2gyHM3ZfyHAgg==", null, false, "e9a14a83-a85c-4913-b2a2-c24896e0d379", false, "admin@email.com" },
+                    { "9e224968-33e4-4652-b7b7-8574d048cdb9", 0, "24b5473d-c1fe-44f9-9fda-32c4d769d089", "user@email.com", true, "Test", "User", false, null, "USER@EMAIL.COM", "USER@EMAIL.COM", "AQAAAAIAAYagAAAAEJUUtrCWIr7GZxzqtKtf4HqfluloHpA4tQ9wp5wrE0GtMj4byfMWLR29uHOWrbY+Cg==", null, false, "1322da9f-149f-45f8-8873-c28b7f566dff", false, "user@email.com" }
                 });
 
             migrationBuilder.InsertData(

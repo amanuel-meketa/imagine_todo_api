@@ -9,7 +9,7 @@ namespace Imagine_todo_api.Controllers
 {
     [Route("api/tasks")]
     [ApiController]
-    //[Authorize(Roles = "Administrator")]
+    [Authorize]
     public class TodoesController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -20,6 +20,7 @@ namespace Imagine_todo_api.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Administrator")]
         public async Task<ActionResult<List<TodoListDto>>> Get()
         {
             var response = await _mediator.Send(new GetTodoListRequest());
@@ -54,6 +55,7 @@ namespace Imagine_todo_api.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Administrator")]
         public async Task<ActionResult> Delete(Guid id)
         {
             var detailQuerie = new DeleteTodoCommand { Id = id };
@@ -77,6 +79,7 @@ namespace Imagine_todo_api.Controllers
         }
 
         [HttpPatch("assign-task")]
+        [Authorize(Roles = "Administrator")]
         public async Task<ActionResult> AssignTask(Guid todoId, Guid userId)
         {
            var assignQuerie = new AssignTaskCommand
@@ -87,6 +90,22 @@ namespace Imagine_todo_api.Controllers
 
            await _mediator.Send(assignQuerie);
             return NoContent();
+        }
+
+        [HttpPatch("my-task")]
+        public async Task<ActionResult<List<TodoDto>>> Myasks()
+        {
+            var user = HttpContext.User;
+
+            if (!user.Identity.IsAuthenticated)
+                return Unauthorized("No user authenticated.");
+
+            var userIdClaim = HttpContext.User.FindFirst("uid");
+
+            if (userIdClaim == null || !Guid.TryParse(userIdClaim.Value, out Guid userGuid))
+                return BadRequest("Invalid user ID claim.");
+
+            return Ok(await _mediator.Send(new GetMyTodoRequest { Id = userGuid }));
         }
     }
 }

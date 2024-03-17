@@ -4,20 +4,23 @@ using Imagine_todo.application.Dtos.Identity;
 using Imagine_todo.application.Features.User.Request.Commands;
 using Imagine_todo.application.Features.User.Request.Queries;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Imagine_todo_api.Controllers
 {
     [Route("api/users")]
     [ApiController]
+    [Authorize(Roles = "Administrator")]
     public class UsersController : ControllerBase
     {
         private readonly IMediator _mediator;
 
-        public UsersController( IMediator mediator)
+        public UsersController(IMediator mediator)
         {
             _mediator = mediator;
         }
 
+        [AllowAnonymous]
         [HttpPost("login")]
         public async Task<ActionResult<AuthResponse>> Login(AuthRequest request)
         {
@@ -25,6 +28,7 @@ namespace Imagine_todo_api.Controllers
             return Ok(await _mediator.Send(loginQuerie));
         }
 
+        [AllowAnonymous]
         [HttpPost("register")]
         public async Task<ActionResult<RegistrationResponse>> Register(CreatUserDto request)
         {
@@ -64,7 +68,8 @@ namespace Imagine_todo_api.Controllers
             return NoContent();
         }
 
-        [HttpGet("current-user")]
+        [AllowAnonymous]
+        [HttpGet("my-profile")]
         public async Task<ActionResult<UserDto>> GetCurrentLoggedInUser()
         {
             var user = HttpContext.User;

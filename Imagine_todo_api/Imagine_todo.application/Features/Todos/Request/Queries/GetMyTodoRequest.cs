@@ -3,7 +3,7 @@ using MediatR;
 
 namespace Imagine_todo.application.Features.Todos.Request.Queries
 {
-    public class GetMyTodoReuest : IRequest<List<TodoDto>>
+    public class GetMyTodoRequest : IRequest<List<TodoDto>>
     {
         public Guid Id { get; set; }
     }
