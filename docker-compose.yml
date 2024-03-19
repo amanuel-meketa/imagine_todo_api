@@ -39,7 +39,7 @@ services:
         image: ${DOCKER_REGISTRY-}imaginetodoapi
         build:
             context: .
-            dockerfile: Imagine_todo_api/Dockerfile
+            dockerfile: Imagine_todo_api/Imagine_todo_api/Dockerfile
         ports:
             - "8080:8080"
         networks:

@@ -5,9 +5,9 @@ namespace Imagine_todo.application.Contracts.Identity
 {
     public interface IUserService
     {
-        Task<List<UserDto>> GetUsers();
-        Task<UserDto> GetUser(Guid userId);
-        Task<bool> UpdateUser(UserDto updatedUser);
+        Task<List<ApplicationUser>> GetUsers();
+        Task<ApplicationUser> GetUser(Guid userId);
+        Task<bool> UpdateUser(ApplicationUser updatedUser);
         Task<bool> DeleteUser(Guid userId);
     }
 }

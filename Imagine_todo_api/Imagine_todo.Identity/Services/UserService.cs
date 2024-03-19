@@ -18,22 +18,22 @@ namespace Imagine_todo.Identity.Services
             _mapper = mapper;
         }
 
-        public async Task<List<UserDto>> GetUsers()
+        public async Task<List<ApplicationUser>> GetUsers()
         {
             var users = await _userManager.Users.ToListAsync();
-            return _mapper.Map<List<UserDto>>(users);
+            return users;
         }
 
-        public async Task<UserDto> GetUser(Guid userId)
+        public async Task<ApplicationUser> GetUser(Guid userId)
         {
             var User = await _userManager.FindByIdAsync(userId.ToString());
             if (User == null)
                 throw new NotFoundException($"User with ID {userId} could not be found.");
 
-            return _mapper.Map<UserDto>(User);
+            return User;
         }
 
-        public async Task<bool> UpdateUser(UserDto updatedUser)
+        public async Task<bool> UpdateUser(ApplicationUser updatedUser)
         {
             var user = await _userManager.FindByIdAsync(updatedUser.Id.ToString());
             if (user == null)

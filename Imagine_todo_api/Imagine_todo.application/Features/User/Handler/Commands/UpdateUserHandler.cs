@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Imagine_todo.application.Contracts.Identity;
 using Imagine_todo.application.Dtos.Identity.Validator;
-using Imagine_todo.application.Exceptions;
 using Imagine_todo.application.Features.User.Request.Commands;
 using MediatR;
 using Imagine_todo.application.Dtos.Identity;
