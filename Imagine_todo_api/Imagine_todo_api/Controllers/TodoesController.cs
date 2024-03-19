@@ -92,7 +92,7 @@ namespace Imagine_todo_api.Controllers
             return NoContent();
         }
 
-        [HttpPatch("my-task")]
+        [HttpGet("my-task")]
         public async Task<ActionResult<List<TodoDto>>> Myasks()
         {
             var user = HttpContext.User;

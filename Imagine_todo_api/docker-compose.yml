@@ -1,0 +1,46 @@
+version: "3.8"
+
+networks:
+    imagine-network:
+        driver: bridge
+
+volumes:
+    imagine-db:
+    pgadmin-data:
+
+services:
+    platform-database:
+        container_name: platform.database
+        image: postgres:14.1-alpine
+        restart: always
+        environment:
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=postgres
+        ports:
+            - '5432:5432'
+        networks:
+            - imagine-network
+        volumes:
+            - imagine-db:/var/lib/postgresql/data
+
+    pgadmin:
+        container_name: pgadmin
+        image: dpage/pgadmin4
+        networks:
+            - imagine-network
+        restart: always
+        environment:
+            PGADMIN_DEFAULT_EMAIL: admin@imagine.net
+            PGADMIN_DEFAULT_PASSWORD: admin
+        ports:
+            - "5050:80"
+
+    imagine_todo_api:
+        image: ${DOCKER_REGISTRY-}imaginetodoapi
+        build:
+            context: .
+            dockerfile: Imagine_todo_api/Dockerfile
+        ports:
+            - "8080:8080"
+        networks:
+            - imagine-network

@@ -7,6 +7,7 @@ namespace Imagine_todo.Identity
 {
     public class TodoIdentityDbContext : IdentityDbContext<ApplicationUser>
     {
+        public const string SchemaTableNameAppDB = "__EFMigrationsHistory";
         public TodoIdentityDbContext(DbContextOptions<TodoIdentityDbContext> options)
         : base(options)
         {

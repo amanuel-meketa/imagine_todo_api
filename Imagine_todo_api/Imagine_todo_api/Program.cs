@@ -5,6 +5,7 @@ using Microsoft.OpenApi.Models;
 using System.Reflection;
 using MediatR;
 using Imagine_todo_api.Middleware;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -45,6 +46,24 @@ void ConfigureMiddleware(WebApplication app)
     }
     app.UseAuthorization();
     app.MapControllers();
+
+    ApplyDatabaseMigrations(app.Services);
+}
+
+void ApplyDatabaseMigrations(IServiceProvider serviceProvider)
+{
+    using (var scope = serviceProvider.CreateScope())
+    {
+        // Apply migrations for application DbContext
+        //var todoContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+        //todoContext.Database.Migrate();
+        //todoContext.SaveChanges();
+
+        // Apply migrations for identity DbContext
+        var identityContext = scope.ServiceProvider.GetRequiredService<TodoIdentityDbContext>();
+        identityContext.Database.Migrate();
+        identityContext.SaveChanges();
+    }
 }
 
 void AddSwaggerDoc(IServiceCollection services)

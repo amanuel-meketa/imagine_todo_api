@@ -4,6 +4,7 @@ using Imagine_todo.application.Dtos.Identity;
 using Imagine_todo.application.Exceptions;
 using Imagine_todo.domain;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace Imagine_todo.Identity.Services
 {
@@ -19,8 +20,8 @@ namespace Imagine_todo.Identity.Services
 
         public async Task<List<UserDto>> GetUsers()
         {
-            var Users = await _userManager.GetUsersInRoleAsync("User");
-            return _mapper.Map<List<UserDto>>(Users);
+            var users = await _userManager.Users.ToListAsync();
+            return _mapper.Map<List<UserDto>>(users);
         }
 
         public async Task<UserDto> GetUser(Guid userId)
