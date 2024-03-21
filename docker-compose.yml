@@ -9,8 +9,18 @@ volumes:
     pgadmin-data:
 
 services:
-    platform-database:
-        container_name: platform.database
+    imagine_todo_api:
+        image: ${DOCKER_REGISTRY-}imaginetodoapi
+        build:
+            context: Imagine_todo_api
+            dockerfile: Imagine_todo_api/Dockerfile
+        ports:
+            - "8080:8080"
+        networks:
+            - imagine-network
+            
+    imagine-database:
+        container_name: imagine.database
         image: postgres:14.1-alpine
         restart: always
         environment:
@@ -34,13 +44,3 @@ services:
             PGADMIN_DEFAULT_PASSWORD: admin
         ports:
             - "5050:80"
-
-    imagine_todo_api:
-        image: ${DOCKER_REGISTRY-}imaginetodoapi
-        build:
-            context: Imagine_todo_api
-            dockerfile: Imagine_todo_api/Imagine_todo_api/Dockerfile
-        ports:
-            - "8080:8080"
-        networks:
-            - imagine-network
