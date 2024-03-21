@@ -55,9 +55,9 @@ void ApplyDatabaseMigrations(IServiceProvider serviceProvider)
     using (var scope = serviceProvider.CreateScope())
     {
         // Apply migrations for application DbContext
-        //var todoContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-        //todoContext.Database.Migrate();
-        //todoContext.SaveChanges();
+        var todoContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+        todoContext.Database.Migrate();
+        todoContext.SaveChanges();
 
         // Apply migrations for identity DbContext
         var identityContext = scope.ServiceProvider.GetRequiredService<TodoIdentityDbContext>();
