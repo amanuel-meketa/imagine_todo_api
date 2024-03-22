@@ -1,35 +1,34 @@
-Taskify
-This project is a backend Task Management System developed using C# ASP.NET Core 8, following Clean Architecture principles. It offers comprehensive functionality including token-based authentication, CRUD operations for tasks and users, task assignment, user privilege management, and various architectural patterns such as MediatoR, CQRS pattern, Automapper, and Repository Pattern. To facilitate easy deployment and scalability, the system is containerized using Docker and managed with Docker Compose, which includes three services: the task service, PostgreSQL database, and PGAdmin to visualize and interact with the database.
+Taskify        
+Taskify is a robust backend Task Management System developed using C# ASP.NET Core 8, designed around Clean Architecture principles. It incorporates key architectural patterns such as MediatoR, CQRS, Automapper, and Repository Pattern. For streamlined deployment and scalability, the system is containerized using Docker and orchestrated with Docker Compose. It comprises three services: the task service, PostgreSQL database, and PGAdmin for efficient database management.
 
-Features
-Token-Based Authentication
-CRUD Functionality for Tasks and Users.
-Task Assignment
-Fluent Validation: Utilizes Fluent Validation for input validation to ensure data integrity.
-MediatoR: Implements MediatoR for handling requests and responses, promoting better organization and maintainability of application logic.
-CQRS Pattern: Utilizes the CQRS pattern for improved separation of concerns and scalability by segregating command and query responsibilities.
-Automapper: Uses Automapper for object-to-object mapping, simplifying data transfer between layers and reducing boilerplate code.
-Repository Pattern: Follows the Repository Pattern for data access, enhancing code maintainability and facilitating unit testing.
-Clean Architecture Principles: Built following Clean Architecture principles, enhancing maintainability, scalability, and testability of the system.
-Swagger Documentation: Interactive API documentation provided through Swagger.
-Global Exception Handling: Implements global exception handling to ensure robustness and reliability, providing consistent error handling throughout the application.
-Docker Containerization: The application is containerized using Docker, enabling easy deployment and scalability across various environments.
-Docker Compose: Includes a Docker Compose file with three services: task service, PostgreSQL database, and PGAdmin for database visualization and interaction.
+Features              
+Token-Based Authentication: Secure authentication mechanism for user access.                     
+CRUD Functionality for Tasks and Users: Comprehensive operations for managing tasks and users.              
+Task Assignment: Assign tasks efficiently within the system.               
+Fluent Validation: Ensures data integrity through robust input validation.                 
+MediatoR: Organized request and response handling for improved maintainability.             
+CQRS Pattern: Enhanced separation of concerns and scalability.                 
+Automapper: Simplifies object-to-object mapping, reducing boilerplate code.                 
+Repository Pattern: Facilitates data access and unit testing.                
+Clean Architecture Principles: Ensures maintainability, scalability, and testability.                    
+Swagger Documentation: Interactive API documentation available via Swagger at http://localhost:8080/swagger.                
+Global Exception Handling: Robust error handling for reliability.             
+Docker Containerization: Easy deployment and scalability across environments.                     
+Docker Compose: Includes services for task management, PostgreSQL database, and PGAdmin.       
+                    
+Setup Instructions                          
+To set up Taskify locally using Docker Compose:                         
 
+Clone the Repository: Clone the repository to your local machine.          
+Navigate to Docker Compose File: Open a terminal and navigate to the directory containing the Docker Compose file (docker-compose.yml).            
+Run Docker Compose: Execute docker-compose up -d to start the services in detached mode.       
+         
+Conclusion         
+Taskify offers a seamless Task Management solution, leveraging modern technologies and best practices. With robust features and reliable performance, it ensures a smooth user experience while maintaining security and scalability.
 
-Setup Instructions
-To set up the User Management System locally using Docker Compose, follow these steps:
+Credentials           
+Admin Credentials: admin@email.com / P@$$w0rd            
+User Credentials: user@email.com / P@$$w0rd        
 
-Clone the Repository: Clone this repository to your local machine using git clone.
-Navigate to Docker Compose File: Open a terminal or command prompt, navigate to the directory containing the Docker Compose file (docker-compose.yml).
-Run Docker Compose: Execute the following command to start the Docker Compose services in detached mode:
-docker-compose up -d
-
-Conclusion
-The User Management System is a robust and scalable backend solution built with modern technologies and best practices. From token-based authentication to global exception handling, every aspect of the application is designed to deliver a seamless user experience while ensuring reliability, security, and maintainability.
-
-Contributing
-Contributions to the User Management System are welcome! If you encounter any issues or have suggestions for improvements, feel free to comment.
-
-Credits
-The User Management System is developed and maintained by Amanuel Eshete.
+Credits        
+Taskify is developed and maintained by Amanuel Eshete.   
