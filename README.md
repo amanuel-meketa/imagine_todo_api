@@ -2,17 +2,16 @@ Taskify
 This project is a backend Task Management System developed using C# ASP.NET Core 8, following Clean Architecture principles. It offers comprehensive functionality including token-based authentication, CRUD operations for tasks and users, task assignment, user privilege management, and various architectural patterns such as MediatoR, CQRS pattern, Automapper, and Repository Pattern. To facilitate easy deployment and scalability, the system is containerized using Docker and managed with Docker Compose, which includes three services: the task service, PostgreSQL database, and PGAdmin to visualize and interact with the database.
 
 Features
-Token-Based Authentication: Secure authentication mechanism using tokens to ensure data integrity and user privacy.
-CRUD Functionality for Tasks and Users: Complete set of operations for creating, reading, updating, and deleting tasks and users, providing full control over task and user management.
-Task Assignment: Capability to assign tasks to specific users, facilitating efficient task distribution and accountability.
-User Privileges: Flexible user privilege management system to define access levels and permissions, ensuring proper control over system functionalities.
-Fluent Validation: Utilizes Fluent Validation for input validation to ensure data integrity and improve user experience.
+Token-Based Authentication
+CRUD Functionality for Tasks and Users.
+Task Assignment
+Fluent Validation: Utilizes Fluent Validation for input validation to ensure data integrity.
 MediatoR: Implements MediatoR for handling requests and responses, promoting better organization and maintainability of application logic.
 CQRS Pattern: Utilizes the CQRS pattern for improved separation of concerns and scalability by segregating command and query responsibilities.
 Automapper: Uses Automapper for object-to-object mapping, simplifying data transfer between layers and reducing boilerplate code.
 Repository Pattern: Follows the Repository Pattern for data access, enhancing code maintainability and facilitating unit testing.
 Clean Architecture Principles: Built following Clean Architecture principles, enhancing maintainability, scalability, and testability of the system.
-Swagger Documentation: Interactive API documentation provided through Swagger, allowing easy exploration and understanding of available endpoints and their usage.
+Swagger Documentation: Interactive API documentation provided through Swagger.
 Global Exception Handling: Implements global exception handling to ensure robustness and reliability, providing consistent error handling throughout the application.
 Docker Containerization: The application is containerized using Docker, enabling easy deployment and scalability across various environments.
 Docker Compose: Includes a Docker Compose file with three services: task service, PostgreSQL database, and PGAdmin for database visualization and interaction.
