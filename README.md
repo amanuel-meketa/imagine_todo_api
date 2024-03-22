@@ -21,7 +21,8 @@ To set up Taskify locally using Docker Compose:
 
 Clone the Repository: Clone the repository to your local machine.          
 Navigate to Docker Compose File: Open a terminal and navigate to the directory containing the Docker Compose file (docker-compose.yml).            
-Run Docker Compose: Execute docker-compose up -d to start the services in detached mode.       
+Run Docker Compose: Execute to start the services in detached mode.                                   
+docker-compose up -d       
          
 Conclusion         
 Taskify offers a seamless Task Management solution, leveraging modern technologies and best practices. With robust features and reliable performance, it ensures a smooth user experience while maintaining security and scalability.
