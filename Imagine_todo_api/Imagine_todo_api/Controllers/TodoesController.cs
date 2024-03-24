@@ -36,7 +36,7 @@ namespace Imagine_todo_api.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Guid>> Post([FromBody] TodoCreateDto todo)
+        public async Task<ActionResult<TodoCreateResponseDto>> Post([FromBody] TodoCreateDto todo)
         {
             var createCommand = new CreateTodoCommand { todoCreateDto = todo };
             var response = await _mediator.Send(createCommand);

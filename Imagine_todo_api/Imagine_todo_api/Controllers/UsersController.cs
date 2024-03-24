@@ -53,7 +53,7 @@ namespace Imagine_todo_api.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult> update(UserDto request)
+        public async Task<ActionResult> update([FromBody] UserDto request)
         {
             var updateQuerie = new UpdateUserCommand { UserDto = request };
             await _mediator.Send(updateQuerie);

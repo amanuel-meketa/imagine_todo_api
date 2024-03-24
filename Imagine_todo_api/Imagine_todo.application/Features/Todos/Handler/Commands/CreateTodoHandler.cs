@@ -9,7 +9,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Imagine_todo.application.Features.Todos.Handler.Commands
 {
-    public class CreateTodoHandler : IRequestHandler<CreateTodoCommand, Guid>
+    public class CreateTodoHandler : IRequestHandler<CreateTodoCommand, TodoCreateResponseDto>
     {
         private readonly ITodoRepository _todoRepository;
         private readonly IMapper _mapper;
@@ -20,17 +20,17 @@ namespace Imagine_todo.application.Features.Todos.Handler.Commands
             _mapper = mapper;
         }
 
-        public async Task<Guid> Handle(CreateTodoCommand request, CancellationToken cancellationToken)
+        public async Task<TodoCreateResponseDto> Handle(CreateTodoCommand request, CancellationToken cancellationToken)
         {
             await ValidateTodoCreateDtoAsync(request.todoCreateDto);
 
             var todo = _mapper.Map<Todo>(request.todoCreateDto);
             var createdTodo = await _todoRepository.Add(todo);
 
-            return createdTodo.Id;
+            return _mapper.Map<TodoCreateResponseDto>(createdTodo);
         }
 
-        private async Task ValidateTodoCreateDtoAsync(TodoCreateDto todoCreateDto)
+        private async Task ValidateTodoCreateDtoAsync(TodoCreateDto? todoCreateDto)
         {
             var validator = new CreateTodoDtoValidator();
             var validatorResult = await validator.ValidateAsync(todoCreateDto);
