@@ -5,12 +5,14 @@ using Imagine_todo.application.Features.User.Request.Commands;
 using Imagine_todo.application.Features.User.Request.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.RateLimiting;
 
 namespace Imagine_todo_api.Controllers
 {
-    [Route("api/users")]
     [ApiController]
+    [Route("api/users")]
     [Authorize(Roles = "Administrator")]
+    [EnableRateLimiting("FixedPolicy")]
     public class UsersController : ControllerBase
     {
         private readonly IMediator _mediator;

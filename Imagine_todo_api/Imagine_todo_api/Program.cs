@@ -6,6 +6,7 @@ using System.Reflection;
 using MediatR;
 using Imagine_todo_api.Middleware;
 using Microsoft.EntityFrameworkCore;
+using System.Threading.RateLimiting;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,6 +30,7 @@ void AddServices(WebApplicationBuilder builder)
     builder.Services.AddSwaggerGen();
     builder.Services.AddScoped<ExceptionHandlingMiddleware>();
     AddSwaggerDoc(builder.Services);
+    AddRateLimiter(builder.Services);
 }
 
 void ConfigureMiddleware(WebApplication app)
@@ -46,15 +48,14 @@ void ConfigureMiddleware(WebApplication app)
     }
     app.UseAuthorization();
     app.MapControllers();
-
+    app.UseRateLimiter();
     ApplyDatabaseMigrations(app.Services);
 }
-
 void ApplyDatabaseMigrations(IServiceProvider serviceProvider)
 {
     using (var scope = serviceProvider.CreateScope())
     {
-        // Apply migrations for application DbContext
+        // Apply migrations for application DbContext (tasks)
         var todoContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
         todoContext.Database.Migrate();
         todoContext.SaveChanges();
@@ -65,7 +66,20 @@ void ApplyDatabaseMigrations(IServiceProvider serviceProvider)
         identityContext.SaveChanges();
     }
 }
-
+void AddRateLimiter(IServiceCollection services)
+{
+    services.AddRateLimiter(option =>
+    {
+        option.RejectionStatusCode = StatusCodes.Status429TooManyRequests;
+        option.AddPolicy("FixedPolicy", httpContent =>RateLimitPartition.GetFixedWindowLimiter(
+            partitionKey: httpContent.User.Identity?.Name?.ToString(),
+            factory: _ => new FixedWindowRateLimiterOptions
+            {
+                PermitLimit = 10,
+                Window = TimeSpan.FromSeconds(30)
+            }));
+    });
+}
 void AddSwaggerDoc(IServiceCollection services)
 {
     services.AddSwaggerGen(c =>

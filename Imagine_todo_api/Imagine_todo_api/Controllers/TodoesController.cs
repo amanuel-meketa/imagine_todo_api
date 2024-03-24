@@ -4,11 +4,13 @@ using Imagine_todo.application.Features.Todos.Request.Queries;
 using Imagine_todo.application.Dtos;
 using Imagine_todo.application.Features.Todos.Request.Commands;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.RateLimiting;
 
 namespace Imagine_todo_api.Controllers
 {
-    [Route("api/tasks")]
     [ApiController]
+    [Route("api/tasks")]
+    [EnableRateLimiting("FixedPolicy")]
     [Authorize]
     public class TasksController : ControllerBase
     {
