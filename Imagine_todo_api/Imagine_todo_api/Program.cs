@@ -7,6 +7,7 @@ using MediatR;
 using Imagine_todo_api.Middleware;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.RateLimiting;
+using Imagine_todo_api.Health;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +21,7 @@ app.Run();
 
 void AddServices(WebApplicationBuilder builder)
 {
+    builder.Services.AddHealthChecks().AddCheck<PostgresDbHealthCheck>("PostgressDatabase");
     builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
     builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
     builder.Services.ConfigureApplicationServices();
@@ -36,7 +38,6 @@ void AddServices(WebApplicationBuilder builder)
 void ConfigureMiddleware(WebApplication app)
 {
     app.UseMiddleware<ExceptionHandlingMiddleware>();
-    app.UseAuthentication();
 
     if (app.Environment.IsDevelopment())
     {
@@ -46,6 +47,8 @@ void ConfigureMiddleware(WebApplication app)
             options.SwaggerEndpoint("/swagger/v1/swagger.json", "API v1");
         });
     }
+    app.MapHealthChecks("_health");
+    app.UseAuthentication();
     app.UseAuthorization();
     app.MapControllers();
     app.UseRateLimiter();
