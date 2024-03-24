@@ -5,6 +5,7 @@ namespace Imagine_todo.application.Features.Todos.Request.Commands
 {
     public class UpdateTodoCommand: IRequest<Unit>
     {
-        public TodoDto? todoDto { get; set; }
+        public Guid Id { get; set; }
+        public TodoUpdateDto? todoDto { get; set; }
     }
 }

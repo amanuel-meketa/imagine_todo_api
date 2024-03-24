@@ -20,9 +20,9 @@ namespace Imagine_todo.application.Features.Todos.Handler.Commands
 
         public async Task<Unit> Handle(UpdateTodoCommand request, CancellationToken cancellationToken)
         {
-            await ValidateTodoUpdateDtoAsync(request.todoDto);
+            var todo = await _todoRepository.Get(request.Id);
 
-            var todo = await _todoRepository.Get(request.todoDto.Id);
+            await ValidateTodoUpdateDtoAsync(request.todoDto);
 
             _mapper.Map(request.todoDto, todo);
             await _todoRepository.Update(todo);
@@ -30,9 +30,9 @@ namespace Imagine_todo.application.Features.Todos.Handler.Commands
             return Unit.Value;
         }
 
-        private async Task ValidateTodoUpdateDtoAsync(TodoDto todoDto)
+        private async Task ValidateTodoUpdateDtoAsync(TodoUpdateDto? todoDto)
         {
-            var validator = new UpdateTodoDtoValidator();
+            var validator = new TodoUpdateDtoValidator();
             var validatorResult = await validator.ValidateAsync(todoDto);
 
             if (!validatorResult.IsValid)

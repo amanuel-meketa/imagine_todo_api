@@ -12,6 +12,7 @@ namespace Imagine_todo.application.Profiles
             CreateMap<Todo, TodoDto>().ReverseMap();
             CreateMap<Todo, TodoCreateDto>().ReverseMap();
             CreateMap<Todo, TodoListDto>().ReverseMap();
+            CreateMap<Todo, TodoUpdateDto>().ReverseMap();
 
             CreateMap<ApplicationUser, UserDto>().ReverseMap();
             CreateMap<ApplicationUser, UpdateUserDto>().ReverseMap();

@@ -46,9 +46,9 @@ namespace Imagine_todo_api.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult> Put([FromBody] TodoDto todo)
+        public async Task<ActionResult> Put(Guid id, [FromBody] TodoUpdateDto todo)
         {
-            var updateCommand = new UpdateTodoCommand { todoDto = todo };
+            var updateCommand = new UpdateTodoCommand { Id = id, todoDto = todo };
             await _mediator.Send(updateCommand);
 
             return NoContent();
