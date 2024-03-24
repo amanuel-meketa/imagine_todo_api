@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Imagine_todo.application.Dtos;
 using Imagine_todo.application.Dtos.Identity;
-using Imagine_todo.application.Dtos.Validator;
 using Imagine_todo.domain;
 
 namespace Imagine_todo.application.Profiles

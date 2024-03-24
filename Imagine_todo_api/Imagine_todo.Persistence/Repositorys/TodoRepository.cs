@@ -19,12 +19,21 @@ namespace Imagine_todo.Persistence.Repositorys
 
         public async Task AssignTask(Guid taskId, Guid userId)
         {
-            var todo = await GetTodoById(taskId);
+            var task = await GetTodoById(taskId);
             await GetUserById(userId);
 
-            todo.AssignedUserId = userId;
+            task.AssignedUserId = userId;
 
-            _dbContext.todos.Update(todo);
+            _dbContext.todos.Update(task);
+            await _dbContext.SaveChangesAsync();
+        }
+
+        public async Task ComplateTask(Guid taskId, string Status)
+        {
+            var task = await GetTodoById(taskId);
+            task.Status = Status;
+
+            _dbContext.todos.Update(task);
             await _dbContext.SaveChangesAsync();
         }
 
@@ -36,11 +45,11 @@ namespace Imagine_todo.Persistence.Repositorys
 
         private async Task<Todo> GetTodoById(Guid taskId)
         {
-            var todo = await _dbContext.todos.FindAsync(taskId);
-            if (todo == null)
+            var task = await _dbContext.todos.FindAsync(taskId);
+            if (task == null)
                 throw new NotFoundException($"Task with Id '{taskId}' not found.");
 
-            return todo;
+            return task;
         }
 
         private async Task GetUserById(Guid userId)

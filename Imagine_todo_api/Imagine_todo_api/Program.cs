@@ -74,7 +74,7 @@ void AddSwaggerDoc(IServiceCollection services)
         {
             Description = @"JWT Authorization header using the Bearer scheme. 
                       Enter 'Bearer' [space] and then your token in the text input below.
-                      Example: 'Bearer 12345abcdef'",
+                      Example: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...'",
             Name = "Authorization",
             In = ParameterLocation.Header,
             Type = SecuritySchemeType.ApiKey,
@@ -102,7 +102,7 @@ void AddSwaggerDoc(IServiceCollection services)
         c.SwaggerDoc("v1", new OpenApiInfo
         {
             Version = "v1",
-            Title = "Imagine Todo Api",
+            Title = "Imagine Task Api",
         });
     });
 }

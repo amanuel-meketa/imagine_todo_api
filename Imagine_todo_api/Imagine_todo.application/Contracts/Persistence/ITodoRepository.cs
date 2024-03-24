@@ -6,5 +6,6 @@ namespace Imagine_todo.application.Contracts.Persistence
     {
         Task AssignTask(Guid taskId, Guid userId);
         Task<List<Todo>> GetMyTasks(Guid userId);
+        Task ComplateTask(Guid taskID, string Status);
     }
 }
