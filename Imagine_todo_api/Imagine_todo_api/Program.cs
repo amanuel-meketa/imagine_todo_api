@@ -8,6 +8,7 @@ using Imagine_todo_api.Middleware;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.RateLimiting;
 using Imagine_todo_api.Health;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +22,7 @@ app.Run();
 
 void AddServices(WebApplicationBuilder builder)
 {
+    builder.Host.UseSerilog((context, loggerConfig) => loggerConfig.ReadFrom.Configuration(context.Configuration));
     builder.Services.AddHealthChecks().AddCheck<PostgresDbHealthCheck>("PostgressDatabase");
     builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
     builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
@@ -37,6 +39,7 @@ void AddServices(WebApplicationBuilder builder)
 
 void ConfigureMiddleware(WebApplication app)
 {
+    app.UseSerilogRequestLogging();
     app.UseMiddleware<ExceptionHandlingMiddleware>();
 
     if (app.Environment.IsDevelopment())
