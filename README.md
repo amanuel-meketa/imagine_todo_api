@@ -18,9 +18,10 @@ Serilog and Seq Server: Provides structured logging and centralized log manageme
 Swagger Documentation: Interactive API documentation available via Swagger at http://localhost:8080/swagger.   
                     
 Setup Instructions                                         
-Clone Repository: Clone the repository to your local machine.
-Navigate to Docker Compose File: Open a terminal and go to the directory with the Docker Compose file.
-Run Docker Compose: Start the services with docker-compose up -d.     
+Clone Repository: Clone the repository to your local machine.                              
+Navigate to Docker Compose File: Open a terminal and go to the directory with the Docker Compose file.                
+Run Docker Compose: Start the services using docker-compose up -d.                      
+Access Swagger Documentation: Visit http://localhost:8080/swagger/index.html in your browser.                 
          
 Conclusion         
 Taskify offers a seamless Task Management solution, leveraging modern technologies and best practices. With robust features and reliable performance, it ensures a smooth user experience while maintaining security and scalability.
