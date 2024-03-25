@@ -7,6 +7,7 @@ networks:
 volumes:
     imagine-db:
     pgadmin-data:
+    seq-data:
 
 services:
     imagine_todo_api:
@@ -27,7 +28,7 @@ services:
             - POSTGRES_USER=postgres
             - POSTGRES_PASSWORD=postgres
         ports:
-            - '5432:5432'
+            - "5432:5432"
         networks:
             - imagine-network
         volumes:
@@ -44,3 +45,19 @@ services:
             PGADMIN_DEFAULT_PASSWORD: admin
         ports:
             - "5050:80"
+            
+    imagine.seq:
+        container_name: imagine.seq
+        image: datalust/seq:latest
+        networks:
+          - imagine-network
+        environment:
+          - ACCEPT_EULA=Y
+        ports:
+          - "5341:5341"
+          - "8081:80"
+        volumes:
+          - seq-data:/data
+
+           
+  
